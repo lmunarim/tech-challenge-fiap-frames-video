@@ -1,4 +1,3 @@
-using Amazon;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.IO.Compression;
@@ -6,7 +5,7 @@ using System.IO.Compression;
 namespace fiap.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ConvertController : ControllerBase
     {
         private readonly Serilog.ILogger _logger;
@@ -73,10 +72,11 @@ namespace fiap.API.Controllers
                     images = frames.Select(f => Path.GetFileName(f)).ToList()
                 });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Error($"Erro {ex.Message}");
-                return BadRequest(new { success = false , message = ex.Message , innerException = ex.InnerException });
+                return BadRequest(new { success = false, message = ex.Message, innerException = ex.InnerException });
+            }
         }
 
         [HttpGet("BaixarZip")]
