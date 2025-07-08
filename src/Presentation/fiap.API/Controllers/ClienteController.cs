@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ClienteController : ControllerBase
     {
         private readonly Serilog.ILogger _logger;
