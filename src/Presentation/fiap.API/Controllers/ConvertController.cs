@@ -28,19 +28,19 @@ namespace fiap.API.Controllers
                 return BadRequest(new { success = false, message = "Unsupported format" });
 
             var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            var videoFile = $@"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\uploads\{timestamp}_{Path.GetFileName(video.FileName)}";
+            var videoFile = $@"..\uploads\{timestamp}_{Path.GetFileName(video.FileName)}";
 
             using (var stream = System.IO.File.Create(videoFile))
                 await video.CopyToAsync(stream);
 
-            var tempDir = $@"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\temp\{timestamp}";
+            var tempDir = $@"..\temp\{timestamp}";
 
             if (!Directory.Exists(tempDir))
                 Directory.CreateDirectory(tempDir);
 
             var ffmpeg = new ProcessStartInfo
             {
-                FileName = @"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\lib\ffmpeg\v4\ffmpeg",
+                FileName = @"..\lib\ffmpeg\v4\ffmpeg",
                 
                 Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
                 RedirectStandardOutput = true,
@@ -56,7 +56,7 @@ namespace fiap.API.Controllers
                 return BadRequest(new { success = false, message = "No frames extracted" });
 
             var zipName = $"frames_{timestamp}.zip";
-            var zipPath = $@"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\outputs\{zipName}";
+            var zipPath = $@"..\outputs\{zipName}";
             ZipFile.CreateFromDirectory(tempDir, zipPath);
 
             Directory.Delete(tempDir, true);
@@ -75,7 +75,7 @@ namespace fiap.API.Controllers
         [HttpGet("BaixarZip")]
         public Task<IActionResult> BaixarZip(string filename)
         {
-            var path = Path.Combine($@"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\outputs", filename);
+            var path = Path.Combine($@"..\outputs", filename);
             if (!System.IO.File.Exists(path))
                 return Task.FromResult<IActionResult>(NotFound("File not found"));
 
@@ -85,7 +85,7 @@ namespace fiap.API.Controllers
         [HttpGet("Status")]
         public Task<IActionResult> Status(string filename)
         {
-            var files = Directory.GetFiles($@"C:\Projetos\tech-challenge-fiap-5\api--fiap-tech-5\outputs", "*.zip");
+            var files = Directory.GetFiles($@"..\outputs", "*.zip");
             var list = files.Select(f =>
             {
                 var info = new FileInfo(f);
