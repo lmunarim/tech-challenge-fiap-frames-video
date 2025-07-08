@@ -31,46 +31,46 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v4
-      with:
-        path: ~\sonar\cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
+    # - name: Restore dependencies
+    #   run: dotnet restore
+    # - name: Cache SonarCloud packages
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: ~\sonar\cache
+    #     key: ${{ runner.os }}-sonar
+    #     restore-keys: ${{ runner.os }}-sonar
       
-    - name: Cache SonarCloud scanner
-      id: cache-sonar-scanner
-      uses: actions/cache@v4
-      with:
-        path: .\.sonar\scanner
-        key: ${{ runner.os }}-sonar-scanner
-        restore-keys: ${{ runner.os }}-sonar-scanner
+    # - name: Cache SonarCloud scanner
+    #   id: cache-sonar-scanner
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: .\.sonar\scanner
+    #     key: ${{ runner.os }}-sonar-scanner
+    #     restore-keys: ${{ runner.os }}-sonar-scanner
       
-    - name: Install SonarCloud scanner
-      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      run: dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner
+    # - name: Install SonarCloud scanner
+    #   if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+    #   run: dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner
     
-    - name: Test and analyze
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /k:"gisele-cesar_tech-challenge-fiap" /o:"projetos-fiap" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.dotcover.reportsPaths=coverage.html 
-        dotnet build tech-challenge-fiap.sln --no-incremental
-        dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj --collect "Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
-        dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+    # - name: Test and analyze
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   run: |
+    #     dotnet tool install --global dotnet-sonarscanner
+    #     dotnet sonarscanner begin /k:"gisele-cesar_tech-challenge-fiap" /o:"projetos-fiap" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.dotcover.reportsPaths=coverage.html 
+    #     dotnet build tech-challenge-fiap.sln --no-incremental
+    #     dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj --collect "Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
+    #     dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-    - name: Rodando testes unitários e criando relatório
-      run: dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
+    # - name: Rodando testes unitários e criando relatório
+    #   run: dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
         
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
-        files: /home/runner/work/tech-challenge-fiap/tech-challenge-fiap/src/Tests/fiap.Tests/coverage.opencover.xml
+    # - name: Upload coverage reports to Codecov
+    #   uses: codecov/codecov-action@v3
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     fail_ci_if_error: true
+    #     files: /home/runner/work/tech-challenge-fiap/tech-challenge-fiap/src/Tests/fiap.Tests/coverage.opencover.xml
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
