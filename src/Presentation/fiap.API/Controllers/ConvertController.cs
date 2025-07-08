@@ -33,7 +33,7 @@ namespace fiap.API.Controllers
             using (var stream = System.IO.File.Create(videoFile))
                 await video.CopyToAsync(stream);
 
-            var tempDir = $@"..\temp\{timestamp}";
+            var tempDir = $@"..\temporary\{timestamp}";
 
             if (!Directory.Exists(tempDir))
                 Directory.CreateDirectory(tempDir);
