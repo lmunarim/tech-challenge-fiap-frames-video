@@ -1,0 +1,2365 @@
+{
+	"info": {
+		"_postman_id": "07bdd141-493f-4c24-90e5-45dc981a3017",
+		"name": "9SOAT -  Tech Challenge - Fase 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12517481"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "Cliente",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Buscar cliente por id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{id}}",
+													"description": "(Required) Id do cliente"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Retorna a busca do cliente por id se existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "//api/Cliente/:id",
+													"path": [
+														"",
+														"api",
+														"Cliente",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se o id do cliente não existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Cliente/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Cliente",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Cliente/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Cliente",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ObterPorCpf",
+							"item": [
+								{
+									"name": "{cpf}",
+									"item": [
+										{
+											"name": "Buscar cliente por cpf",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Cliente/ObterPorCpf/:cpf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Cliente",
+														"ObterPorCpf",
+														":cpf"
+													],
+													"variable": [
+														{
+															"key": "cpf",
+															"value": "{{cpf}}",
+															"description": "(Required) CPF do cliente"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Retorna a busca do cliente por cpf se existir",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "//api/Cliente/ObterPorCpf/:cpf",
+															"path": [
+																"",
+																"api",
+																"Cliente",
+																"ObterPorCpf",
+																":cpf"
+															],
+															"variable": [
+																{
+																	"key": "cpf"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Se o cpf do cliente não existir",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Cliente/ObterPorCpf/:cpf",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Cliente",
+																"ObterPorCpf",
+																":cpf"
+															],
+															"variable": [
+																{
+																	"key": "cpf"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Se houver erro de conexão com banco de dados",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Cliente/ObterPorCpf/:cpf",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Cliente",
+																"ObterPorCpf",
+																":cpf"
+															],
+															"variable": [
+																{
+																	"key": "cpf"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Buscar clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Cliente",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cliente"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Retorna a lista de clientes cadastrados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "//api/Cliente",
+											"path": [
+												"",
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro na busca por clientes",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Cadastrar cliente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Maria\",\n    \"cpf\": \"12345678910\",\n    \"email\": \"teste@yahoo.com.br\"   \n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Cliente",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cliente"
+									]
+								},
+								"description": "Exemplo:\r\n\r\n    POST /Cliente\r\n    {\r\n        \"nome\": \"Maria\",\r\n        \"cpf\": \"12345678910\",\r\n        \"email\": \"teste@yahoo.com.br\"   \r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna o novo cliente cadastrado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "//api/Cliente",
+											"path": [
+												"",
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se o cliente não for cadastrado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Alterar cadastro cliente",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"nome\": \"Maria Silva\",\n    \"cpf\": \"12345678910\",\n    \"email\": \"teste2@yahoo.com.br\"      \n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Cliente",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cliente"
+									]
+								},
+								"description": "Exemplo:\r\n\r\n    PUT /Cliente\r\n    {\r\n        \"id\": 1,\r\n        \"nome\": \"Maria Silva\",\r\n        \"cpf\": \"12345678910\",\r\n        \"email\": \"teste2@yahoo.com.br\"      \r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna o cadastrado do cliente alterado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "//api/Cliente",
+											"path": [
+												"",
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro ao alterar o cadastro do cliente",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"cpf\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Cliente",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Cliente"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"description": "API para cadastro de clientes, consulta de clientes por Id ou por Cpf, obter lista de clientes cadatrados e alterar cadastro de cliente."
+				},
+				{
+					"name": "PagamentoExterno",
+					"item": [
+						{
+							"name": "ReceberEventoOrdemCriada",
+							"item": [
+								{
+									"name": "Receber evento de ordem de pagamento criada",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoOrdemCriada?id=<string>&topic=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"PagamentoExterno",
+												"ReceberEventoOrdemCriada"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												},
+												{
+													"key": "topic",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Retorna ok para confirmação de recepção do evento",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "//api/PagamentoExterno/ReceberEventoOrdemCriada?id=<string>&topic=<string>",
+													"path": [
+														"",
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoOrdemCriada"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro na busca do pedido para a ordem criada",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoOrdemCriada?id=<string>&topic=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoOrdemCriada"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoOrdemCriada?id=<string>&topic=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoOrdemCriada"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ReceberEventoPagamentoProcessado",
+							"item": [
+								{
+									"name": "Receber evento de pagamento processado",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoPagamentoProcessado?data_id=<integer>&topic=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"PagamentoExterno",
+												"ReceberEventoPagamentoProcessado"
+											],
+											"query": [
+												{
+													"key": "data_id",
+													"value": "<integer>"
+												},
+												{
+													"key": "topic",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Retorna ok para confirmação de recepção do evento",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoPagamentoProcessado?data_id=<integer>&topic=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoPagamentoProcessado"
+													],
+													"query": [
+														{
+															"key": "data_id",
+															"value": "<integer>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro na busca por pedidos",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoPagamentoProcessado?data_id=<integer>&topic=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoPagamentoProcessado"
+													],
+													"query": [
+														{
+															"key": "data_id",
+															"value": "<integer>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/PagamentoExterno/ReceberEventoPagamentoProcessado?data_id=<integer>&topic=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"PagamentoExterno",
+														"ReceberEventoPagamentoProcessado"
+													],
+													"query": [
+														{
+															"key": "data_id",
+															"value": "<integer>"
+														},
+														{
+															"key": "topic",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					],
+					"description": "API criada para recepção de eventos de criação de ordem de pagamento (merchant_orders) e status de pagamento de ordem de pagamento(payment) do meio de pagamento externo (Mercado Pago)."
+				},
+				{
+					"name": "Pedido",
+					"item": [
+						{
+							"name": "ObterPedidosPorStatus",
+							"item": [
+								{
+									"name": "Obter Lista de Pedidos Por Status",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido/ObterPedidosPorStatus?status1={{status1}}&status2={{status2}}&status3={{status3}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido",
+												"ObterPedidosPorStatus"
+											],
+											"query": [
+												{
+													"key": "status1",
+													"value": "{{status1}}",
+													"description": "(Required) "
+												},
+												{
+													"key": "status2",
+													"value": "{{status2}}",
+													"description": "(Required) "
+												},
+												{
+													"key": "status3",
+													"value": "{{status3}}",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Descricao Status Pedido para ordenacao:\r\n\r\n    [\r\n        - Recebido,\r\n        - Em preparação,\r\n        - Pronto\r\n    ]\r\n\r\nExemplo:\r\n\r\n    Get /Pedido\r\n    {\r\n        \"status1\": \"Pronto\",\r\n        \"status2\": \"Em preparação\",\r\n        \"status3\": \"Recebido\"\r\n    }"
+									},
+									"response": [
+										{
+											"name": "Retorna a lista de pedidos ordenados por status do pedido conforme parâmetros da consulta",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/ObterPedidosPorStatus?status1=<string>&status2=<string>&status3=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														"ObterPedidosPorStatus"
+													],
+													"query": [
+														{
+															"key": "status1",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status2",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status3",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro na busca por pedidos",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/ObterPedidosPorStatus?status1=<string>&status2=<string>&status3=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														"ObterPedidosPorStatus"
+													],
+													"query": [
+														{
+															"key": "status1",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status2",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status3",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/ObterPedidosPorStatus?status1=<string>&status2=<string>&status3=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														"ObterPedidosPorStatus"
+													],
+													"query": [
+														{
+															"key": "status1",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status2",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "status3",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Buscar pedido por id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{id}}",
+													"description": "(Required) Id do pedido"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Retorna a busca do pedido por id se existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se o id do pedido não existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Pedido/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Pedido",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Obter Lista de Pedidos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Pedido",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Pedido"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Retorna a lista de pedidos cadastrados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro na busca por pedidos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Criar pedido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idCliente\": 1,\n    \"numeroPedido\": \"1234\",\n    \"idStatusPedido\": \"1\",\n    \"idStatusPagamento\": \"1\",\n    \"listaCodigoProduto\": [1]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Pedido",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Pedido"
+									]
+								},
+								"description": "param listaCodigoProduto:\r\n\r\n    [idProduto1, idProduto2]\r\n\r\nExemplo:\r\n\r\n    POST /Pedido\r\n    {\r\n        \"idCliente\": 1,\r\n        \"numeroPedido\": \"1234\",\r\n        \"listaCodigoProduto\": [1]\r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna o novo pedido criado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se o pedido não for criado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Atualizar pedido",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idPedido\": 1,\n    \"idCliente\": 1,\n    \"numeroPedido\": \"1234\",\n    \"idStatusPedido\": 2,\n    \"idStatusPagamento\": 2,\n    \"listaCodigoProduto\": [1, 2]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Pedido",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Pedido"
+									]
+								},
+								"description": "Ids Status Pedido:\r\n\r\n    [\r\n        1: Solicitado,\r\n        2: Recebido,\r\n        3: Em preparação,\r\n        4: Pronto,\r\n        5: Finalizado\r\n    ]\r\n            \r\nIds Status Pagamento:\r\n\r\n    [\r\n        1: Pendente,\r\n        2: Aprovado,\r\n        3: Recusado\r\n    ]\r\n\r\nparam listaCodigoProduto:\r\n\r\n    [idProduto1, idProduto2]\r\n\r\nExemplo:\r\n\r\n    PUT /Pedido\r\n    {\r\n        \"idPedido\": 1,\r\n        \"idCliente\": 1,\r\n        \"numeroPedido\": \"1234\",\r\n        \"idStatusPedido\": 2,\r\n        \"idStatusPagamento\": 2,\r\n        \"listaCodigoProduto\": [1, 2]\r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna se o pedido for alterado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro na alteração do pedido",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idPedido\": \"<integer>\",\n  \"idCliente\": \"<integer>\",\n  \"numeroPedido\": \"<string>\",\n  \"idStatusPedido\": \"<integer>\",\n  \"idStatusPagamento\": \"<integer>\",\n  \"listaCodigoProduto\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Pedido",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Pedido"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"description": "API para cadastro de pedidos, consulta de pedidos por Id, obter lista de todos os pedidos cadatrados e de pedidos por status e alteração de pedidos."
+				},
+				{
+					"name": "Produto",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Buscar produto por id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{id}}",
+													"description": "(Required) Id do produto"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Retorna a busca do produto por id se existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Produto/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Produto",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se o id do produto não existir",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Produto/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Produto",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Se houver erro de conexão com banco de dados",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Produto/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Produto",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ObterProdutoPorCategoria",
+							"item": [
+								{
+									"name": "{idCategoriaProduto}",
+									"item": [
+										{
+											"name": "Buscar produtos por categoria",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Produto/ObterProdutoPorCategoria/:idCategoriaProduto",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Produto",
+														"ObterProdutoPorCategoria",
+														":idCategoriaProduto"
+													],
+													"variable": [
+														{
+															"key": "idCategoriaProduto",
+															"value": "{{idCategoriaProduto}}",
+															"description": "(Required) Id da Categoria de produto"
+														}
+													]
+												},
+												"description": "Ids Categoria de Produto:\r\n\r\n    [\r\n        1: Lanche,\r\n        2: Acompanhamento,\r\n        3: Bebida,\r\n        4: Sobremesa\r\n    ]"
+											},
+											"response": [
+												{
+													"name": "Retorna a lista de produtos cadastrados por categoria",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Produto/ObterProdutoPorCategoria/:idCategoriaProduto",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Produto",
+																"ObterProdutoPorCategoria",
+																":idCategoriaProduto"
+															],
+															"variable": [
+																{
+																	"key": "idCategoriaProduto"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Se houver erro na busca de produtos por categoria",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Produto/ObterProdutoPorCategoria/:idCategoriaProduto",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Produto",
+																"ObterProdutoPorCategoria",
+																":idCategoriaProduto"
+															],
+															"variable": [
+																{
+																	"key": "idCategoriaProduto"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Se houver erro de conexão com banco de dados",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Produto/ObterProdutoPorCategoria/:idCategoriaProduto",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Produto",
+																"ObterProdutoPorCategoria",
+																":idCategoriaProduto"
+															],
+															"variable": [
+																{
+																	"key": "idCategoriaProduto"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Buscar produtos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Produto",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Produto"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Retorna a lista de produtos cadastrados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro na busca por produtos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Criar produto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idCategoriaProduto\": 1,\n    \"nome\": \"X-Salada da casa\",\n    \"descricao\": \"Hamburguer com alface e tomate\",\n    \"preco\": 15.50\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Produto",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Produto"
+									]
+								},
+								"description": "Ids Categoria de Produto:\r\n\r\n    [\r\n        1: Lanche,\r\n        2: Acompanhamento,\r\n        3: Bebida,\r\n        4: Sobremesa\r\n    ]\r\n\r\nExemplo:\r\n\r\n    POST /Produto\r\n    {\r\n        \"idCategoriaProduto\": 1,\r\n        \"nome\": \"X-Salada da casa\",\r\n        \"descricao\": \"Hamburguer com alface e tomate\",\r\n        \"preco\": 15.50\r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna o novo produto criado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se o produto não for criado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Alterar produto",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idProduto\": 1,\n    \"idCategoriaProduto\": 1,\n    \"nome\": \"X-Salada da casa\",\n    \"descricao\": \"Hamburguer com alface e tomate\",\n    \"preco\": 21.00\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Produto",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Produto"
+									]
+								},
+								"description": "Ids Categoria de Produto:\r\n\r\n    [\r\n        1: Lanche,\r\n        2: Acompanhamento,\r\n        3: Bebida,\r\n        4: Sobremesa\r\n    ]\r\n\r\nExemplo:\r\n\r\n    PUT /Produto\r\n    {\r\n        \"idProduto\": 1,\r\n        \"idCategoriaProduto\": 1,\r\n        \"nome\": \"X-Salada da casa\",\r\n        \"descricao\": \"Hamburguer com alface e tomate\",\r\n        \"preco\": 21.00\r\n    }"
+							},
+							"response": [
+								{
+									"name": "Retorna o produto alterado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro na alteração do produto",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Se houver erro de conexão com banco de dados",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"idProduto\": \"<integer>\",\n  \"idCategoriaProduto\": \"<integer>\",\n  \"nome\": \"<string>\",\n  \"descricao\": \"<string>\",\n  \"preco\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Produto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Produto"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"description": "API para cadastro de produtos por categoria, consulta de produtos por Id ou por IdCategoriaProduto de produtos, obter lista de produtos cadatrados e atualizar produtos."
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

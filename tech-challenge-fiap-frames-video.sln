@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8B46477D-3B28-48B3-A878-6385B95FC324}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{EEC85BE4-9F84-4419-896A-D81B4B21B946}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D57CF421-1469-413C-AC01-DA26687B7318}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\workflows\deploy.yaml = .github\workflows\deploy.yaml
+		Dockerfile = Dockerfile
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{2336E2F1-353B-44A2-847A-3480A13EC6BB}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\app-deployment.yaml = k8s\app-deployment.yaml
+		k8s\app-service-account.yaml = k8s\app-service-account.yaml
+		k8s\app-service.yaml = k8s\app-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{93320D1F-4ADE-461B-8253-A030A8395C37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{5219F5D3-4D32-4519-8818-F75B038F3A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{26AB4B06-4481-43A9-8A3A-6A74FF2E9DDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fiap.Application", "src\Core\fiap.Application\fiap.Application.csproj", "{6632A3BE-841B-4E04-851D-9B586C06181E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fiap.Domain", "src\Core\fiap.Domain\fiap.Domain.csproj", "{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fiap.API", "src\Presentation\fiap.API\fiap.API.csproj", "{E785BC85-CF30-4C13-824E-42AE32114EEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fiap.Repositories", "src\Infrastructure\Data\fiap.Repositories\fiap.Repositories.csproj", "{E440EC9A-D0BF-4BE2-869F-1596435B1E59}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fiap.Services", "src\Infrastructure\Services\fiap.Services\fiap.Services.csproj", "{A91A6039-9FB0-4812-B776-6F4DFE4058C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4C714684-4735-4FFF-98FA-06224912FC98}"
+	ProjectSection(SolutionItems) = preProject
+		9SOAT -  Tech Challenge - Fase 2.postman_collection.json = 9SOAT -  Tech Challenge - Fase 2.postman_collection.json
+		Desenho Arquitetura.jpg = Desenho Arquitetura.jpg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39B1467A-72E6-48FF-BDA2-72561B739D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fiap.Tests", "src\Tests\fiap.Tests\fiap.Tests.csproj", "{6A11BFC1-80CB-4CE4-9545-9A190A7C9530}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6632A3BE-841B-4E04-851D-9B586C06181E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6632A3BE-841B-4E04-851D-9B586C06181E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6632A3BE-841B-4E04-851D-9B586C06181E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6632A3BE-841B-4E04-851D-9B586C06181E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E785BC85-CF30-4C13-824E-42AE32114EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E785BC85-CF30-4C13-824E-42AE32114EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E785BC85-CF30-4C13-824E-42AE32114EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E785BC85-CF30-4C13-824E-42AE32114EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E440EC9A-D0BF-4BE2-869F-1596435B1E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E440EC9A-D0BF-4BE2-869F-1596435B1E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E440EC9A-D0BF-4BE2-869F-1596435B1E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E440EC9A-D0BF-4BE2-869F-1596435B1E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A91A6039-9FB0-4812-B776-6F4DFE4058C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91A6039-9FB0-4812-B776-6F4DFE4058C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91A6039-9FB0-4812-B776-6F4DFE4058C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91A6039-9FB0-4812-B776-6F4DFE4058C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A11BFC1-80CB-4CE4-9545-9A190A7C9530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A11BFC1-80CB-4CE4-9545-9A190A7C9530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A11BFC1-80CB-4CE4-9545-9A190A7C9530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A11BFC1-80CB-4CE4-9545-9A190A7C9530}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2336E2F1-353B-44A2-847A-3480A13EC6BB} = {D57CF421-1469-413C-AC01-DA26687B7318}
+		{5219F5D3-4D32-4519-8818-F75B038F3A4A} = {93320D1F-4ADE-461B-8253-A030A8395C37}
+		{26AB4B06-4481-43A9-8A3A-6A74FF2E9DDE} = {93320D1F-4ADE-461B-8253-A030A8395C37}
+		{6632A3BE-841B-4E04-851D-9B586C06181E} = {8B46477D-3B28-48B3-A878-6385B95FC324}
+		{F1704FCE-9A1C-47EA-A60F-BD020CDCEABA} = {8B46477D-3B28-48B3-A878-6385B95FC324}
+		{E785BC85-CF30-4C13-824E-42AE32114EEC} = {EEC85BE4-9F84-4419-896A-D81B4B21B946}
+		{E440EC9A-D0BF-4BE2-869F-1596435B1E59} = {5219F5D3-4D32-4519-8818-F75B038F3A4A}
+		{A91A6039-9FB0-4812-B776-6F4DFE4058C1} = {26AB4B06-4481-43A9-8A3A-6A74FF2E9DDE}
+		{4C714684-4735-4FFF-98FA-06224912FC98} = {D57CF421-1469-413C-AC01-DA26687B7318}
+		{6A11BFC1-80CB-4CE4-9545-9A190A7C9530} = {39B1467A-72E6-48FF-BDA2-72561B739D6B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBEFF8AC-01F5-409B-B24E-BD23A8CC26E6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\fiap.Application\fiap.Application.csproj" />
+    <ProjectReference Include="..\..\Core\fiap.Domain\fiap.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Data\fiap.Repositories\fiap.Repositories.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Services\fiap.Services\fiap.Services.csproj" />
+    <ProjectReference Include="..\..\Presentation\fiap.API\fiap.API.csproj" />
+  </ItemGroup>
+
+  <Target Name="SetCoverletOutputProperty" BeforeTargets="GenerateCoverletResult">
+    <PropertyGroup>
+      <CoverletOutput>coverage.opencover.xml</CoverletOutput>
+    </PropertyGroup>
+  </Target>
+</Project>
