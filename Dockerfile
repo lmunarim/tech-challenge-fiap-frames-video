@@ -13,9 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /
 COPY ["/src/Presentation/fiap.API/fiap.API.csproj", "src/Presentation/fiap.API/"]
-COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
-COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
-COPY ["/src/Presentation/fiap.API/fiap.API/temporary", "src/Presentation/fiap.API/temporary"]
+#COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
+#COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
+#COPY ["/src/Presentation/fiap.API/fiap.API/temporary", "src/Presentation/fiap.API/temporary"]
 
 RUN dotnet restore "./src/Presentation/fiap.API/fiap.API.csproj"
 COPY . .
