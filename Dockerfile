@@ -9,28 +9,28 @@ EXPOSE 8080
 EXPOSE 1433
 
 
-# Copy your Linux-compatible executable
-COPY ["./src/Presentation/fiap.API/lib", "/app/src/Presentation/fiap.API/lib"]
-RUN chmod +x "/app/src/Presentation/fiap.API/lib"
+############ Copy your Linux-compatible executable
+###########COPY ["./src/Presentation/fiap.API/lib", "/app/src/Presentation/fiap.API/lib"]
+###########RUN chmod +x "/app/src/Presentation/fiap.API/lib"
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /
 COPY ["/src/Presentation/fiap.API/fiap.API.csproj", "src/Presentation/fiap.API/"]
-#COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
-#COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
-#COPY ["/src/Presentation/fiap.API/fiap.API/temporary", "src/Presentation/fiap.API/temporary"]
+########COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
+########COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
+########COPY ["/src/Presentation/fiap.API/fiap.API/temporary", "src/Presentation/fiap.API/temporary"]
 
 RUN dotnet restore "./src/Presentation/fiap.API/fiap.API.csproj"
 COPY . .
 WORKDIR "/src/Presentation/fiap.API"
 RUN dotnet build "./fiap.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-## Install FFmpeg
-#RUN apt-get update && \
-    #apt-get install -y --no-install-recommends ffmpeg && \
-    #rm -rf /var/lib/apt/lists/*
+######### Install FFmpeg
+########RUN apt-get update && \
+    ########apt-get install -y --no-install-recommends ffmpeg && \
+    ########rm -rf /var/lib/apt/lists/*
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
