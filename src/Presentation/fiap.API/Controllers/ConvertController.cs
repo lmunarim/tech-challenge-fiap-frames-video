@@ -130,6 +130,7 @@ namespace fiap.API.Controllers
                 {
                     EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
                     AbortOnConnectFail = false,
+                    Ssl = true,
                     ConnectTimeout = 10000,
                     SyncTimeout = 10000,
                     KeepAlive = 180,
