@@ -10,7 +10,7 @@ EXPOSE 1433
 
 
 # Copy your Linux-compatible executable
-COPY ["./src/Presentation/fiap.API/fiap.API/lib", "/app/src/Presentation/fiap.API/fiap.API/lib"]
+COPY ["/src/Presentation/fiap.API/fiap.API/lib", "/app/src/Presentation/fiap.API/fiap.API/lib"]
 RUN chmod +x "/app/src/Presentation/fiap.API/fiap.API/lib"
 
 # This stage is used to build the service project
