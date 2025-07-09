@@ -30,12 +30,12 @@ namespace fiap.API.Controllers
                     return BadRequest(new { success = false, message = "Unsupported format" });
 
                 var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // mudar guid
-                var videoFile = $@"./uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
+                var videoFile = $@"/app/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
 
                 using (var stream = System.IO.File.Create(videoFile))
                     await video.CopyToAsync(stream);
 
-                var tempDir = $@"./temporary/{timestamp}";
+                var tempDir = $@"/app/temporary/{timestamp}";
 
                 if (!Directory.Exists(tempDir))
                     Directory.CreateDirectory(tempDir);
@@ -52,7 +52,7 @@ namespace fiap.API.Controllers
                     return BadRequest(new { success = false, message = "No frames extracted" });
 
                 var zipName = $"frames_{timestamp}.zip";
-                var zipPath = $@"./outputs/{zipName}";
+                var zipPath = $@"/app/outputs/{zipName}";
                 ZipFile.CreateFromDirectory(tempDir, zipPath);
 
                 Directory.Delete(tempDir, true);
