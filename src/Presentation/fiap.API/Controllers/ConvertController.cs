@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.IO.Compression;
 using FFMpegCore;
+using VisioForge.MediaFramework.FFMPEGCore;
 
 namespace fiap.API.Controllers
 {
@@ -52,7 +53,14 @@ namespace fiap.API.Controllers
                 //    BinaryFolder = "/usr/bin",
                 //    TemporaryFilesFolder = "/tmp"
                 //});
+                //await FFMpegArguments
+                //    .FromFileInput(inputPath)
+                //    .Output(outputPath, true, options => options
+                //        .WithVideoCodec("libx264")
+                //        .WithAudioCodec("aac"))
+                //    .ProcessAsynchronously();
 
+                _logger.Information($" local------- {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\ffmpeg.exe")}");
 
                 var ffmpeg = new ProcessStartInfo
                 {
