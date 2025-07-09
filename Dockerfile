@@ -1,13 +1,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 1433
 
+USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
     rm -rf /var/lib/apt/lists/*
-    
+
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 1433    
 RUN mkdir -p /app/uploads /app/outputs /app/temporary && \
     chown -R app:app /app/uploads /app/outputs /app/temporary
 
