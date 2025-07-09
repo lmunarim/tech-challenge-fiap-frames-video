@@ -114,6 +114,10 @@ namespace fiap.API.Controllers
         /// </summary>
         public async Task SalvarRedisAsync(FileStream stream)
         {
+            try
+            {
+
+            
             byte[] byteArray;
             using (var memoryStream = new MemoryStream())
             {
@@ -137,6 +141,12 @@ namespace fiap.API.Controllers
             var db = redis.GetDatabase();
 
             await db.StringSetAsync("mp4", JsonSerializer.Serialize(newObj));
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex,$"Erro ao salvar no Redis - {ex.Message} - {ex.InnerException.Message}");
+                throw;
+            }
         }
     }
 }
