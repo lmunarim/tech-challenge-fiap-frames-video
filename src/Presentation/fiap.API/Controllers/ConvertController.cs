@@ -7,6 +7,8 @@ using StackExchange.Redis;
 using System.IO;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Collections;
+using System.Security.Cryptography;
 
 namespace fiap.API.Controllers
 {
@@ -36,11 +38,19 @@ namespace fiap.API.Controllers
 
                 var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // mudar guid
                 var videoFile = $@"/app/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
+                
 
+                byte[] byteArray;
                 using (var stream = System.IO.File.Create(videoFile))
+                using (var memoryStream = new MemoryStream())
                 {
                     await video.CopyToAsync(stream);
-                    await SalvarRedisAsync(stream);
+
+                    /// Criando um array de bytes para salvar do REDIS
+                    await stream.CopyToAsync(memoryStream);
+                    byteArray = memoryStream.ToArray();
+
+                    await SalvarRedisAsync(byteArray);
                 }
                 
 
@@ -114,19 +124,10 @@ namespace fiap.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        private async Task SalvarRedisAsync(FileStream stream)
+        private async Task SalvarRedisAsync(byte[] byteArray)
         {
             try
             {
-
-            
-            byte[] byteArray;
-            using (var memoryStream = new MemoryStream())
-            {
-                stream.CopyTo(memoryStream);
-                byteArray = memoryStream.ToArray();
-            }
-
             var newObj = new {
 
                 nomeArquivo = Guid.NewGuid().ToString(),
