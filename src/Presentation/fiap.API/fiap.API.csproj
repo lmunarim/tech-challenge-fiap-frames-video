@@ -15,7 +15,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <PackageReference Include="FFMpegCore" Version="5.1.0" />
+    <PackageReference Include="FFMpegCore" Version="5.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,15 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="lib\ffmpeg\v4\ffmpeg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="lib\ffmpeg\v4\icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="lib\ffmpeg\v4\icon.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="outputs\TextFile.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

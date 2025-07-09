@@ -1,5 +1,6 @@
+using FFMpegCore;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using System.IO.Compression;
 
 namespace fiap.API.Controllers
@@ -20,12 +21,6 @@ namespace fiap.API.Controllers
         {
             try
             {
-                //FFMpegOptions.Configure(new FFMpegOptions
-                //{
-                //    BinaryFolder = "/usr/bin", // where ffmpeg is installed in most Linux containers
-                //    TemporaryFilesFolder = "/tmp"
-                //});
-
                 if (video == null || video.Length == 0)
                     return BadRequest(new { success = false, message = "No video uploaded" });
 
@@ -58,24 +53,33 @@ namespace fiap.API.Controllers
                 //        .WithAudioCodec("aac"))
                 //    .ProcessAsynchronously();
 
-                _logger.Information($" local------- {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\ffmpeg.exe")}");
+                //_logger.Information($" local------- {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\ffmpeg.exe")}");
 
-                var  file  = new FileInfo(@"/app/lib/ffmpeg/v4/ffmpeg.exe");
+                //var  file  = new FileInfo(@"/app/lib/ffmpeg/v4/ffmpeg.exe");
 
-                _logger.Information($"Existe ? {file.Exists}");
+                //_logger.Information($"Existe ? {file.Exists}");
 
-                var ffmpeg = new ProcessStartInfo
-                {
-                    /// FileName = @"/usr/bin/ffmpeg",
-                    FileName = @"/app/lib/ffmpeg/v4/ffmpeg.exe",
-                    Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false
-                };
+                //var ffmpeg = new ProcessStartInfo
+                //{
+                //    /// FileName = @"/usr/bin/ffmpeg",
+                //    FileName = @"/app/lib/ffmpeg/v4/ffmpeg.exe",
+                //    Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
+                //    RedirectStandardOutput = true,
+                //    RedirectStandardError = true,
+                //    UseShellExecute = false
+                //};
 
-                var proc = Process.Start(ffmpeg);
-                proc.WaitForExit();
+                //var proc = Process.Start(ffmpeg);
+                //proc.WaitForExit();
+
+
+
+                await FFMpegArguments
+                    .FromFileInput(videoFile)
+                    .OutputToFile($@"{tempDir}\frame_%04d.png", overwrite: true, options => options
+                        .WithCustomArgument("-vf fps=1")) // 1 frame por segundo
+                    .ProcessAsynchronously();
+
 
                 var frames = Directory.GetFiles(tempDir, "*.png");
                 if (frames.Length == 0)

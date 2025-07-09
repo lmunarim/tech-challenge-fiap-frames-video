@@ -10,11 +10,18 @@ using fiap.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Resources;
+using FFMpegCore;
 
 [assembly: ExcludeFromCodeCoverage]
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//FFMpegOptions.Configure(new FFMpegOptions
+//{
+//    BinaryFolder = "/usr/bin", // Caminho padrão do ffmpeg em containers Linux
+//    TemporaryFilesFolder = "/tmp"
+//});
 // Add services to the container.
 
 builder.Services.AddControllers();
