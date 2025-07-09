@@ -114,7 +114,7 @@ namespace fiap.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public async Task SalvarRedisAsync(FileStream stream)
+        private async Task SalvarRedisAsync(FileStream stream)
         {
             try
             {
