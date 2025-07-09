@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using System.IO.Compression;
 
+using StackExchange.Redis;
+using System.IO;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+
 namespace fiap.API.Controllers
 {
     [ApiController]
@@ -35,6 +40,8 @@ namespace fiap.API.Controllers
                 using (var stream = System.IO.File.Create(videoFile))
                     await video.CopyToAsync(stream);
 
+                await SalvarRedisAsync(stream);
+
                 var tempDir = $@"/app/temporary/{timestamp}";
 
                 if (!Directory.Exists(tempDir))
@@ -42,8 +49,8 @@ namespace fiap.API.Controllers
 
                 await FFMpegArguments
                     .FromFileInput(videoFile)
-                    .OutputToFile($@"{tempDir}/frame_%04d.png", overwrite: true, options => options
-                        .WithCustomArgument("-vf fps=1")) // 1 frame por segundo
+                    .OutputToFile($@"{tempDir}/frame_%04d.png", overwrite: true, options =>
+                                    options.WithCustomArgument("-vf fps=1")) // 1 frame por segundo
                     .ProcessAsynchronously();
 
                 _logger.Information($" tempDir -->>> {tempDir}");
@@ -102,7 +109,34 @@ namespace fiap.API.Controllers
 
             return Task.FromResult<IActionResult>(Ok(new { total = files.Length, files = list }));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task SalvarRedisAsync(FileStream stream)
+        {
+            byte[] byteArray;
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                byteArray = memoryStream.ToArray();
+            }
 
-   
+            var newObj = new {
+
+                nomeArquivo = Guid.NewGuid().ToString(),
+                conteudo = byteArray
+            };
+
+            var options = new ConfigurationOptions
+            {
+                EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
+                Ssl = true
+            };
+
+            var redis = ConnectionMultiplexer.Connect(options);
+            var db = redis.GetDatabase();
+
+            await db.StringSetAsync("mp4", JsonSerializer.Serialize(newObj));
+        }
     }
 }
