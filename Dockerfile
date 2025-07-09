@@ -4,8 +4,13 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
-
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /app/uploads && \
+    chown -R app:app /app/uploads && \
+    mkdir -p /app/outputs && \
+    chown -R app:app /app/outputs && \
+    mkdir -p /app/temporary && \
+    chown -R app:app /app/temporary
 
 USER app
 WORKDIR /app
