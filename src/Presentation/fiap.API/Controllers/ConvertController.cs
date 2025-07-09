@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.IO.Compression;
-using FFMpegCore;
-using VisioForge.MediaFramework.FFMPEGCore;
 
 namespace fiap.API.Controllers
 {
