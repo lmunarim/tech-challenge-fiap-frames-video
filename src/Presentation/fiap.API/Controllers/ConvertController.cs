@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.IO.Compression;
+using FFMpegCore;
 
 namespace fiap.API.Controllers
 {
@@ -45,9 +46,17 @@ namespace fiap.API.Controllers
                 if (!Directory.Exists(tempDir))
                     Directory.CreateDirectory(tempDir);
 
+
+                //FFMpegOptions.Configure(new FFMpegOptions
+                //{
+                //    BinaryFolder = "/usr/bin",
+                //    TemporaryFilesFolder = "/tmp"
+                //});
+
+
                 var ffmpeg = new ProcessStartInfo
                 {
-                    FileName = @"..\lib\ffmpeg\v4\ffmpeg",
+                    FileName = @"/usr/bin/ffmpeg",
                     Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
