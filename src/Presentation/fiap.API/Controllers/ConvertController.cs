@@ -29,64 +29,30 @@ namespace fiap.API.Controllers
                 if (!allowed.Contains(ext))
                     return BadRequest(new { success = false, message = "Unsupported format" });
 
-                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                var videoFile = $@"..\uploads\{timestamp}_{Path.GetFileName(video.FileName)}";
+                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // mudar guid
+                var videoFile = $@"/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
 
                 using (var stream = System.IO.File.Create(videoFile))
                     await video.CopyToAsync(stream);
 
-                var tempDir = $@"..\temporary\{timestamp}";
+                var tempDir = $@"/temporary/{timestamp}";
 
                 if (!Directory.Exists(tempDir))
                     Directory.CreateDirectory(tempDir);
 
-
-                //FFMpegOptions.Configure(new FFMpegOptions
-                //{
-                //    BinaryFolder = "/usr/bin",
-                //    TemporaryFilesFolder = "/tmp"
-                //});
-                //await FFMpegArguments
-                //    .FromFileInput(inputPath)
-                //    .Output(outputPath, true, options => options
-                //        .WithVideoCodec("libx264")
-                //        .WithAudioCodec("aac"))
-                //    .ProcessAsynchronously();
-
-                //_logger.Information($" local------- {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\ffmpeg.exe")}");
-
-                //var  file  = new FileInfo(@"/app/lib/ffmpeg/v4/ffmpeg.exe");
-
-                //_logger.Information($"Existe ? {file.Exists}");
-
-                //var ffmpeg = new ProcessStartInfo
-                //{
-                //    /// FileName = @"/usr/bin/ffmpeg",
-                //    FileName = @"/app/lib/ffmpeg/v4/ffmpeg.exe",
-                //    Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
-                //    RedirectStandardOutput = true,
-                //    RedirectStandardError = true,
-                //    UseShellExecute = false
-                //};
-
-                //var proc = Process.Start(ffmpeg);
-                //proc.WaitForExit();
-
-
-
                 await FFMpegArguments
                     .FromFileInput(videoFile)
-                    .OutputToFile($@"{tempDir}\frame_%04d.png", overwrite: true, options => options
+                    .OutputToFile($@"{tempDir}/frame_%04d.png", overwrite: true, options => options
                         .WithCustomArgument("-vf fps=1")) // 1 frame por segundo
                     .ProcessAsynchronously();
 
-
+                _logger.Information($" tempDir -->>> {tempDir}");
                 var frames = Directory.GetFiles(tempDir, "*.png");
                 if (frames.Length == 0)
                     return BadRequest(new { success = false, message = "No frames extracted" });
 
                 var zipName = $"frames_{timestamp}.zip";
-                var zipPath = $@"..\outputs\{zipName}";
+                var zipPath = $@"/outputs/{zipName}";
                 ZipFile.CreateFromDirectory(tempDir, zipPath);
 
                 Directory.Delete(tempDir, true);
