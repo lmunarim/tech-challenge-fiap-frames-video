@@ -16,16 +16,7 @@ using FFMpegCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-//FFMpegOptions.Configure(new FFMpegOptions
-//{
-//    BinaryFolder = "/usr/bin", // Caminho padrão do ffmpeg em containers Linux
-//    TemporaryFilesFolder = "/tmp"
-//});
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Host.UseSerilog((context, configuration) =>
@@ -86,6 +77,13 @@ builder.Services.AddOpenTelemetry().WithTracing(_ => _
 
 
 builder.Services.AddRepositoriesModule();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
 var app = builder.Build();
 
 app.UseSwagger();
@@ -94,6 +92,9 @@ app.UseSwaggerUI(opt =>
     opt.SwaggerEndpoint("/swagger/v1/swagger.json", "FIAP - Tech Challenge V1");
 });
 
+
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
