@@ -38,21 +38,13 @@ namespace fiap.API.Controllers
 
                 var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // mudar guid
                 var videoFile = $@"/app/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
-                
 
-                byte[] byteArray;
-                using (var stream = System.IO.File.Create(videoFile))
-                using (var memoryStream = new MemoryStream())
-                {
-                    await video.CopyToAsync(stream);
 
-                    /// Criando um array de bytes para salvar do REDIS
-                    await stream.CopyToAsync(memoryStream);
-                    byteArray = memoryStream.ToArray();
+                using (var stream = System.IO.File.Create(videoFile)) await video.CopyToAsync(stream);
 
-                    await SalvarRedisAsync(byteArray);
-                }
-                
+                byte[] byteArray = await System.IO.File.ReadAllBytesAsync(videoFile);
+                await SalvarRedisAsync(byteArray);
+
 
                 var tempDir = $@"/app/temporary/{timestamp}";
 
@@ -134,13 +126,17 @@ namespace fiap.API.Controllers
                 conteudo = byteArray
             };
 
-            var options = new ConfigurationOptions
-            {
-                EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
-                Ssl = true
-            };
+                var config = new ConfigurationOptions
+                {
+                    EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
+                    AbortOnConnectFail = false,
+                    ConnectTimeout = 10000,
+                    SyncTimeout = 10000,
+                    KeepAlive = 180,
+                    ClientName = "fiapfase5redis"
+                };
 
-            var redis = ConnectionMultiplexer.Connect(options);
+            var redis = ConnectionMultiplexer.Connect(config);
             var db = redis.GetDatabase();
 
             await db.StringSetAsync("mp4", JsonSerializer.Serialize(newObj));
