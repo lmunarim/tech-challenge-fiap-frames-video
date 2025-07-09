@@ -38,9 +38,11 @@ namespace fiap.API.Controllers
                 var videoFile = $@"/app/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
 
                 using (var stream = System.IO.File.Create(videoFile))
+                {
                     await video.CopyToAsync(stream);
-
-                await SalvarRedisAsync(stream);
+                    await SalvarRedisAsync(stream);
+                }
+                
 
                 var tempDir = $@"/app/temporary/{timestamp}";
 
