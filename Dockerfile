@@ -3,7 +3,7 @@ USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 1433
-
+ 
 # Instala o FFmpeg no container Linux
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
