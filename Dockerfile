@@ -27,7 +27,7 @@ COPY . .
 WORKDIR "/src/Presentation/fiap.API"
 RUN dotnet build "./fiap.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Install FFmpeg
+# Instala o FFmpeg nativo no Linux
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
     rm -rf /var/lib/apt/lists/*
