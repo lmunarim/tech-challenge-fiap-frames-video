@@ -27,10 +27,10 @@ COPY . .
 WORKDIR "/src/Presentation/fiap.API"
 RUN dotnet build "./fiap.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-######### Install FFmpeg
-########RUN apt-get update && \
-    ########apt-get install -y --no-install-recommends ffmpeg && \
-    ########rm -rf /var/lib/apt/lists/*
+# Install FFmpeg
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
