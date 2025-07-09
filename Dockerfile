@@ -3,7 +3,11 @@ USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 1433
- 
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/* && \
+    
 RUN mkdir -p /app/uploads /app/outputs /app/temporary && \
     chown -R app:app /app/uploads /app/outputs /app/temporary
 
