@@ -60,9 +60,14 @@ namespace fiap.API.Controllers
 
                 _logger.Information($" local------- {Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\ffmpeg.exe")}");
 
+                var  file  = new FileInfo(@"\usr\bin\lib\ffmpeg\v4\ffmpeg.exe");
+
+                _logger.Information($"Existe ? {file.Exists}");
+
                 var ffmpeg = new ProcessStartInfo
                 {
-                    FileName = @"/usr/bin/ffmpeg",
+                    /// FileName = @"/usr/bin/ffmpeg",
+                    FileName = @"\usr\bin\lib\ffmpeg\v4\ffmpeg.exe",
                     Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
