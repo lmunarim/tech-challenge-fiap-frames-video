@@ -77,7 +77,7 @@ namespace fiap.API.Controllers
         [HttpGet("BaixarZip")]
         public Task<IActionResult> BaixarZip(string filename)
         {
-            var path = Path.Combine($@"..\outputs", filename);
+            var path = Path.Combine(@"/app/outputs", filename);
             if (!System.IO.File.Exists(path))
                 return Task.FromResult<IActionResult>(NotFound("File not found"));
 
@@ -87,7 +87,7 @@ namespace fiap.API.Controllers
         [HttpGet("Status")]
         public Task<IActionResult> Status(string filename)
         {
-            var files = Directory.GetFiles($@"..\outputs", "*.zip");
+            var files = Directory.GetFiles(@"/app/outputs", "*.zip");
             var list = files.Select(f =>
             {
                 var info = new FileInfo(f);
