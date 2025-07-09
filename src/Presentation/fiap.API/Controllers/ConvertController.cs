@@ -20,6 +20,12 @@ namespace fiap.API.Controllers
         {
             try
             {
+                //FFMpegOptions.Configure(new FFMpegOptions
+                //{
+                //    BinaryFolder = "/usr/bin", // where ffmpeg is installed in most Linux containers
+                //    TemporaryFilesFolder = "/tmp"
+                //});
+
                 if (video == null || video.Length == 0)
                     return BadRequest(new { success = false, message = "No video uploaded" });
 
@@ -42,7 +48,6 @@ namespace fiap.API.Controllers
                 var ffmpeg = new ProcessStartInfo
                 {
                     FileName = @"..\lib\ffmpeg\v4\ffmpeg",
-
                     Arguments = $"-i \"{videoFile}\" -vf fps=1 -y \"{tempDir}/frame_%04d.png\"",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,

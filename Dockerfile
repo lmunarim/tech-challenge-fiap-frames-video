@@ -16,7 +16,7 @@ COPY ["/src/Presentation/fiap.API/fiap.API.csproj", "src/Presentation/fiap.API/"
 #COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
 #COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
 #COPY ["/src/Presentation/fiap.API/fiap.API/temporary", "src/Presentation/fiap.API/temporary"]
-
+RUN apt-get update && apt-get install -y ffmpeg
 RUN dotnet restore "./src/Presentation/fiap.API/fiap.API.csproj"
 COPY . .
 WORKDIR "/src/Presentation/fiap.API"
