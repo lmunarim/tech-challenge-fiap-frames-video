@@ -1,23 +1,11 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-
-# Instala o FFmpeg no container Linux
-USER root
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ffmpeg && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /app/uploads && \
-    chown -R app:app /app/uploads && \
-    mkdir -p /app/outputs && \
-    chown -R app:app /app/outputs && \
-    mkdir -p /app/temporary && \
-    chown -R app:app /app/temporary
-
 USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 1433
  
-
+RUN mkdir -p /app/uploads /app/outputs /app/temporary && \
+    chown -R app:app /app/uploads /app/outputs /app/temporary
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
