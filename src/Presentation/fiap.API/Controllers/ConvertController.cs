@@ -73,6 +73,7 @@ namespace fiap.API.Controllers
                 try
                 {
                     await EnviarArquivoS3Async(zipPath);
+                    _logger.Information($"Upload ao S3 realizado com sucesso do arquivo {zipName}");
                 }
                 catch (Exception ex)
                 {
@@ -81,8 +82,8 @@ namespace fiap.API.Controllers
 
                 try
                 {
-                    ///byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
                     await NotificarEnvioSucessoAsync(zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
+                    _logger.Information($"Enviado para fila com sucesso");
                 }
                 catch(Exception ex)
                 {
