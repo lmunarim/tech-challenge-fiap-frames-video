@@ -13,6 +13,8 @@ using fiap.API.DTO;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using Amazon;
+using Amazon.S3;
+using Amazon.S3.Transfer;
 
 namespace fiap.API.Controllers
 {
@@ -71,7 +73,17 @@ namespace fiap.API.Controllers
                 try
                 {
                     byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
-                    await EnviarFilaAsync(byteArray, zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
+                    await EnviarArquivoS3Async(zipName);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, $"Erro ao no upload do arquivo {zipPath}");
+                }
+
+                try
+                {
+                    byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
+                    await NotificarEnvioSucessoAsync(zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
                 }
                 catch(Exception ex)
                 {
@@ -126,10 +138,29 @@ namespace fiap.API.Controllers
             return Task.FromResult<IActionResult>(Ok(new { total = files.Length, files = list }));
         }
 
+        private async Task EnviarArquivoS3Async(string filePath)
+        {
+            try
+            {
+                var s3Client = new AmazonS3Client(RegionEndpoint.USEast1); // ou outra região do seu bucket
+                var transferUtility = new TransferUtility(s3Client);
+
+                await transferUtility.UploadAsync(filePath, "tech-challenge-fiap-7p0u9i0h");
+                Console.WriteLine("Upload concluído com sucesso!");
+
+                _logger.Information($"Sucesso no upload do arquivo {filePath}");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"Erro no upload do arquivo  - {ex.Message} - {ex.InnerException.Message}");
+                throw;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
-        private async Task EnviarFilaAsync(byte[] byteArray, string nomeArquivo, UsuarioDTO usuario)
+        private async Task NotificarEnvioSucessoAsync(string nomeArquivo, UsuarioDTO usuario)
         {
             try
             {
@@ -137,7 +168,6 @@ namespace fiap.API.Controllers
                 {
 
                     nomeArquivo,
-                    conteudo = byteArray,
                     usuario
                 };
 
