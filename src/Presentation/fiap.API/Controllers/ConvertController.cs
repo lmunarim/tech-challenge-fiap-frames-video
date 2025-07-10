@@ -67,8 +67,15 @@ namespace fiap.API.Controllers
                 var zipPath = $@"/app/outputs/{zipName}";
                 ZipFile.CreateFromDirectory(tempDir, zipPath);
 
-                byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
-                await EnviarFilaAsync(byteArray, zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
+                try
+                {
+                    byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
+                    await EnviarFilaAsync(byteArray, zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
+                }
+                catch(Exception ex)
+                {
+                    _logger.Error(ex, $"Erro ao enviar para a fila");
+                }
 
                 Directory.Delete(tempDir, true);
                 System.IO.File.Delete(videoFile);
