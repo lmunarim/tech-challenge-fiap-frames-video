@@ -141,10 +141,12 @@ namespace fiap.API.Controllers
                 };
 
                 var response = await sqsClient.SendMessageAsync(sendRequest);
+
+                _logger.Information($"Array de bytes do zip enviado para fila com sucesso {response}");
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, $"Erro ao salvar no Redis - {ex.Message} - {ex.InnerException.Message}");
+                _logger.Error(ex, $"Erro ao salvar na fila - {ex.Message} - {ex.InnerException.Message}");
                 throw;
             }
         }
