@@ -29,7 +29,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Services.AddSwaggerGen(c =>
     {
-        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "FIAP - Tech Challenge - Frames Video", Version = "v1" });
+        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = $"FIAP - Tech Challenge - Frames Video V-{Guid.NewGuid()}", Version = "v1" });
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         c.IncludeXmlComments(xmlPath);
