@@ -9,6 +9,9 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Collections;
 using System.Security.Cryptography;
+using fiap.API.DTO;
+using Amazon.SQS;
+using Amazon.SQS.Model;
 
 namespace fiap.API.Controllers
 {
@@ -40,10 +43,8 @@ namespace fiap.API.Controllers
                 var videoFile = $@"/app/uploads/{timestamp}_{Path.GetFileName(video.FileName)}";
 
 
-                using (var stream = System.IO.File.Create(videoFile)) await video.CopyToAsync(stream);
-
-                byte[] byteArray = await System.IO.File.ReadAllBytesAsync(videoFile);
-                await SalvarRedisAsync(byteArray);
+                using (var stream = System.IO.File.Create(videoFile)) 
+                    await video.CopyToAsync(stream);
 
 
                 var tempDir = $@"/app/temporary/{timestamp}";
@@ -65,6 +66,9 @@ namespace fiap.API.Controllers
                 var zipName = $"frames_{timestamp}.zip";
                 var zipPath = $@"/app/outputs/{zipName}";
                 ZipFile.CreateFromDirectory(tempDir, zipPath);
+
+                byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
+                await EnviarFilaAsync(byteArray, zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
 
                 Directory.Delete(tempDir, true);
                 System.IO.File.Delete(videoFile);
@@ -113,40 +117,72 @@ namespace fiap.API.Controllers
 
             return Task.FromResult<IActionResult>(Ok(new { total = files.Length, files = list }));
         }
+
         /// <summary>
         /// 
         /// </summary>
-        private async Task SalvarRedisAsync(byte[] byteArray)
+        private async Task EnviarFilaAsync(byte[] byteArray, string nomeArquivo, UsuarioDTO usuario)
         {
             try
             {
-            var newObj = new {
-
-                nomeArquivo = Guid.NewGuid().ToString(),
-                conteudo = byteArray
-            };
-
-                var config = new ConfigurationOptions
+                var newObj = new
                 {
-                    EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
-                    AbortOnConnectFail = false,
-                    Ssl = true,
-                    ConnectTimeout = 10000,
-                    SyncTimeout = 10000,
-                    KeepAlive = 180,
-                    ClientName = "fiapfase5redis"
+
+                    nomeArquivo,
+                    conteudo = byteArray,
+                    usuario
                 };
 
-            var redis = ConnectionMultiplexer.Connect(config);
-            var db = redis.GetDatabase();
+                var sqsClient = new AmazonSQSClient();
+                var sendRequest = new SendMessageRequest
+                {
+                    QueueUrl = "https://sqs.us-east-1.amazonaws.com/147997141255/tech-challenge-fiap-upload-imagens",
+                    MessageBody = JsonSerializer.Serialize(newObj)
+                };
 
-            await db.StringSetAsync("mp4", JsonSerializer.Serialize(newObj));
+                var response = await sqsClient.SendMessageAsync(sendRequest);
             }
             catch (Exception ex)
             {
-                _logger.Error(ex,$"Erro ao salvar no Redis - {ex.Message} - {ex.InnerException.Message}");
+                _logger.Error(ex, $"Erro ao salvar no Redis - {ex.Message} - {ex.InnerException.Message}");
                 throw;
             }
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //private async Task SalvarRedisAsync(byte[] byteArray)
+        //{
+        //    try
+        //    {
+        //    var newObj = new {
+
+        //        nomeArquivo = Guid.NewGuid().ToString(),
+        //        conteudo = byteArray
+        //    };
+
+        //        var config = new ConfigurationOptions
+        //        {
+        //            EndPoints = { "fiapfase5redis-xzjgcs.serverless.use1.cache.amazonaws.com:6379" },
+        //            AbortOnConnectFail = false,
+        //            Ssl = true,
+        //            ConnectTimeout = 10000,
+        //            SyncTimeout = 10000,
+        //            KeepAlive = 180,
+        //            ClientName = "fiapfase5redis"
+        //        };
+
+        //    var redis = ConnectionMultiplexer.Connect(config);
+        //    var db = redis.GetDatabase();
+
+        //    await db.StringSetAsync("mp4", JsonSerializer.Serialize(newObj));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.Error(ex,$"Erro ao salvar no Redis - {ex.Message} - {ex.InnerException.Message}");
+        //        throw;
+        //    }
+        //}
     }
 }
