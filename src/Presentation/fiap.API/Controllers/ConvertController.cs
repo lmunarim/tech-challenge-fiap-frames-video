@@ -145,7 +145,7 @@ namespace fiap.API.Controllers
                 var sendRequest = new SendMessageRequest
                 {
                     QueueUrl = "https://sqs.us-east-1.amazonaws.com/147997141255/tech-challenge-fiap-upload-imagens",
-                    MessageBody = "teste" //JsonSerializer.Serialize(newObj)
+                    MessageBody = JsonSerializer.Serialize(newObj)
                 };
 
                 var response = await sqsClient.SendMessageAsync(sendRequest);
