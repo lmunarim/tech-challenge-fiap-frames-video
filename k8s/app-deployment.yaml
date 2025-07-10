@@ -15,7 +15,7 @@ spec:
         app: fiap-fase-5
         version: v01
     spec:
-      serviceAccountName: fiap-fase-5-account
+      serviceAccountName: frames-video-sa
       imagePullSecrets: 
         - name: docker-auth
       restartPolicy: Always
