@@ -72,8 +72,7 @@ namespace fiap.API.Controllers
 
                 try
                 {
-                    byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
-                    await EnviarArquivoS3Async(zipName);
+                    await EnviarArquivoS3Async(zipPath);
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +81,7 @@ namespace fiap.API.Controllers
 
                 try
                 {
-                    byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
+                    ///byte[] byteArray = await System.IO.File.ReadAllBytesAsync(zipPath);
                     await NotificarEnvioSucessoAsync(zipName, new UsuarioDTO { Email = "teste@teste.com", Nome = "teste" });
                 }
                 catch(Exception ex)
