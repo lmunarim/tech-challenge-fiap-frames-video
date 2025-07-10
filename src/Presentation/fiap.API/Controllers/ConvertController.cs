@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using fiap.API.DTO;
 using Amazon.SQS;
 using Amazon.SQS.Model;
+using Amazon;
 
 namespace fiap.API.Controllers
 {
@@ -140,7 +141,7 @@ namespace fiap.API.Controllers
                     usuario
                 };
 
-                var sqsClient = new AmazonSQSClient();
+                var sqsClient = new AmazonSQSClient(RegionEndpoint.USEast1);
                 var sendRequest = new SendMessageRequest
                 {
                     QueueUrl = "https://sqs.us-east-1.amazonaws.com/147997141255/tech-challenge-fiap-upload-imagens",
