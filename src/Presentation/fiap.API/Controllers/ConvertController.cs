@@ -142,12 +142,10 @@ namespace fiap.API.Controllers
         {
             try
             {
-                var s3Client = new AmazonS3Client(RegionEndpoint.USEast1); // ou outra região do seu bucket
+                var s3Client = new AmazonS3Client(RegionEndpoint.USEast1);
                 var transferUtility = new TransferUtility(s3Client);
 
                 await transferUtility.UploadAsync(filePath, "tech-challenge-fiap-7p0u9i0h");
-                Console.WriteLine("Upload concluído com sucesso!");
-
                 _logger.Information($"Sucesso no upload do arquivo {filePath}");
             }
             catch (Exception ex)
@@ -180,7 +178,7 @@ namespace fiap.API.Controllers
 
                 var response = await sqsClient.SendMessageAsync(sendRequest);
 
-                _logger.Information($"Array de bytes do zip enviado para fila com sucesso {response.HttpStatusCode} - {response.MessageId}");
+                _logger.Information($"enviado para fila com sucesso {response.HttpStatusCode} - {response.MessageId}");
             }
             catch (Exception ex)
             {
