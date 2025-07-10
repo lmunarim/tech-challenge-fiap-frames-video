@@ -148,9 +148,9 @@ namespace fiap.API.Controllers
                     MessageBody = JsonSerializer.Serialize(newObj)
                 };
 
-                var response = await sqsClient.SendMessageAsync(sendRequest);
+                _ = await sqsClient.SendMessageAsync(sendRequest);
 
-                _logger.Information($"Array de bytes do zip enviado para fila com sucesso {response}");
+                /// _logger.Information($"Array de bytes do zip enviado para fila com sucesso {response}");
             }
             catch (Exception ex)
             {
