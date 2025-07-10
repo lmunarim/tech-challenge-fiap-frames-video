@@ -154,7 +154,7 @@ namespace fiap.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, $"Erro ao salvar na fila  {response.HttpStatusCode} - {response.MessageId} - {ex.Message} - {ex.InnerException.Message}");
+                _logger.Error(ex, $"Erro ao salvar na fila  - {ex.Message} - {ex.InnerException.Message}");
                 throw;
             }
         }
