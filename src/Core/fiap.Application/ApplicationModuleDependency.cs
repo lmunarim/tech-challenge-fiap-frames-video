@@ -1,5 +1,4 @@
 ﻿using fiap.Application.Interfaces;
-using fiap.Application.UseCases;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace fiap.Application
@@ -8,7 +7,7 @@ namespace fiap.Application
     {
         public static void AddApplicationModule(this IServiceCollection services)
         {
-            services.AddSingleton<IClienteApplication, ClienteApplication>();
+            services.AddTransient<IVideoUploadApplication, VideoUploadApplication>();
         }
     }
 }
