@@ -22,11 +22,16 @@ namespace fiap.API.Controllers
         private readonly Serilog.ILogger _logger;
         private readonly IStatusUploadService _statusUploadService;
         private readonly IVideoUploadApplication _videoUploadApplication;
-        public VideoUploadConvertController(Serilog.ILogger logger, IStatusUploadService statusUploadService, IVideoUploadApplication videoUploadApplication)
+        private readonly IS3Service _s3;
+        public VideoUploadConvertController(Serilog.ILogger logger, 
+            IStatusUploadService statusUploadService, 
+            IVideoUploadApplication videoUploadApplication,
+            IS3Service s3)
         {
             _logger = logger;
             _statusUploadService = statusUploadService;
             _videoUploadApplication = videoUploadApplication;
+            _s3 = s3;
         }
 
         [HttpPost("Upload")]
@@ -90,13 +95,14 @@ namespace fiap.API.Controllers
         }
 
         [HttpGet("BaixarZip")]
-        public Task<IActionResult> BaixarZip(string filename)
+        public async Task<IActionResult> BaixarZip(string fileName)
         {
-            var path = Path.Combine(@"/app/outputs", filename);
-            if (!System.IO.File.Exists(path))
-                return Task.FromResult<IActionResult>(NotFound("File not found"));
 
-            return Task.FromResult<IActionResult>(File(System.IO.File.OpenRead(path), "application/zip", filename));
+            var (stream, contentType) = await _s3.DownloadAsync(fileName);
+            if (stream == null)
+                return NotFound("Arquivo não encontrado.");
+
+            return File(stream, contentType, fileName);
         }
 
         [HttpGet("Status")]

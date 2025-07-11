@@ -1,3 +1,4 @@
+using Amazon.S3;
 using fiap.Application;
 using fiap.Repositories;
 using fiap.Services;
@@ -35,6 +36,8 @@ builder.Services.AddHealthChecks();
 builder.Services.AddHttpClient();
 builder.Services.AddApplicationModule();
 builder.Services.AddServicesModule();
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
 
 builder.Services.AddOpenTelemetry().WithTracing(_ => _
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("frames-video"))

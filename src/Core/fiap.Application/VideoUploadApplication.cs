@@ -13,12 +13,12 @@ namespace fiap.Application
     public class VideoUploadApplication :IVideoUploadApplication
     {
         private readonly Serilog.ILogger _logger;
-        private readonly IUploadArquivoService _uploadArquivoService;
+        private readonly IS3Service _s3Service;
         private readonly IStatusUploadService _statusUploadService;
-        public VideoUploadApplication(Serilog.ILogger logger, IUploadArquivoService uploadArquivoService, IStatusUploadService statusUploadService)
+        public VideoUploadApplication(Serilog.ILogger logger, IS3Service s3Service, IStatusUploadService statusUploadService)
         {
             _logger = logger;
-            _uploadArquivoService = uploadArquivoService;
+            _s3Service = s3Service;
             _statusUploadService = statusUploadService;
         }
         public async Task<string[]> ConverterVideoFrames(IFormFile video, VideoUpload videoUpload)
@@ -55,7 +55,7 @@ namespace fiap.Application
                 videoUpload.UrlS3 = "criando-endereco-S3";
                 await _statusUploadService.EnviarStatusAsync(videoUpload);
 
-                var urlS3 = await _uploadArquivoService.UploadAsync(zipPath);
+                var urlS3 = await _s3Service.UploadAsync(zipPath);
                 _logger.Information($"Upload ao S3 realizado com sucesso do arquivo {zipName}");
 
                 videoUpload.StatusUpload = StatusUpload.ArquivoSalvoS3;

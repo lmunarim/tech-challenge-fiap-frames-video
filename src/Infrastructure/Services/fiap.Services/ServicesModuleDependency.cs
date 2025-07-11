@@ -8,7 +8,7 @@ namespace fiap.Services
         public static void AddServicesModule(this IServiceCollection services)
         {
             services.AddTransient<IStatusUploadService, StatusUploadService>();
-            services.AddTransient<IUploadArquivoService, UploadArquivoService>();
+            services.AddTransient<IS3Service, S3Service>();
         }
     }
 }
