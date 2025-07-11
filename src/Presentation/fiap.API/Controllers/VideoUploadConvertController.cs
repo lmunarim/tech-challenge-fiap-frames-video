@@ -36,7 +36,7 @@ namespace fiap.API.Controllers
 
         [HttpPost("Upload")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Upload(IFormFile video)
+        public async Task<IActionResult> Upload(IFormFile video, string nome ,string email)
         {
             var idVideo = Guid.NewGuid().ToString();
             var videoUpload = new VideoUpload
@@ -45,11 +45,11 @@ namespace fiap.API.Controllers
                 NomeArquivoOrigem = video.FileName,
                 NomeArquivoGerado = $"{idVideo}.zip",
                 StatusUpload = StatusUpload.Enviado,
-                UrlS3 = "construindo...",
+                UrlS3 = $"https://tech-challenge-fiap-7p0u9i0h.s3.us-east-1.amazonaws.com/{idVideo}.zip",
                 Usuario = new Usuario
                 {
-                    Nome = "Usuário Teste",
-                    Email = "lmunarim@gmail.com"
+                    Nome = nome,
+                    Email = email
                 },
             };
             _logger.Information($"Iniciando o upload do vídeo {videoUpload.NomeArquivoOrigem} com ID {videoUpload.Id}");
@@ -70,18 +70,14 @@ namespace fiap.API.Controllers
                     return BadRequest(new { success = false, message = "No video uploaded" });
                 }
 
-                string[] frames = await _videoUploadApplication.ConverterVideoFrames(video, videoUpload);
+                _ = Task.Run(() => _videoUploadApplication.ConverterVideoFrames(video, videoUpload));
 
-                videoUpload.StatusUpload = StatusUpload.Finalizado;
-                await _statusUploadService.EnviarStatusAsync(videoUpload);
 
-                return Ok(new
+                return new CreatedResult(videoUpload.UrlS3, new
                 {
                     success = true,
-                    message = $"Extracted {frames.Length} frames",
-                    zip = videoUpload.UrlS3,
-                    frameCount = frames.Length,
-                    images = frames.Select(f => Path.GetFileName(f)).ToList()
+                    zip = videoUpload.NomeArquivoGerado,
+                    Url = videoUpload.UrlS3
                 });
             }
             catch (Exception ex)

@@ -6,6 +6,6 @@ namespace fiap.Application.Interfaces
 {
     public interface IVideoUploadApplication
     {
-        Task<string[]> ConverterVideoFrames(IFormFile video, VideoUpload videoUpload);
+        Task ConverterVideoFrames(IFormFile video, VideoUpload videoUpload);
     }
 }
