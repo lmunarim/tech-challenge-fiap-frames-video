@@ -2,7 +2,7 @@ name: Deploy to ECR
 
 on:
    push:
-     branches: [ feature/* ]
+     branches: [ develop ]
    pull_request:
      types: [opened, synchronize, reopened]
 
@@ -63,7 +63,7 @@ jobs:
     #     dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj --collect "Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
     #     dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-    # - name: Rodando testes unitários e criando relatório
+    # - name: Rodando testes unitï¿½rios e criando relatï¿½rio
     #   run: dotnet test src/Tests/fiap.Tests/fiap.Tests.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
         
     # - name: Upload coverage reports to Codecov
@@ -95,13 +95,13 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
 
-    - name: Deploy to EKS
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
-        IMAGE_TAG: ${{ steps.commit.outputs.short }}
-      run: |
-        sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/app-deployment.yaml && \
-        kubectl apply -f k8s/app-deployment.yaml
-        kubectl apply -f k8s/app-service.yaml
-        kubectl apply -f k8s/app-service-account.yaml
-        kubectl apply -f k8s/app-hpa.yaml
+    # - name: Deploy to EKS
+    #   env:
+    #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
+    #     IMAGE_TAG: ${{ steps.commit.outputs.short }}
+    #   run: |
+    #     sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" k8s/app-deployment.yaml && \
+    #     kubectl apply -f k8s/app-deployment.yaml
+    #     kubectl apply -f k8s/app-service.yaml
+    #     kubectl apply -f k8s/app-service-account.yaml
+    #     kubectl apply -f k8s/app-hpa.yaml
