@@ -70,7 +70,8 @@ namespace fiap.API.Controllers
                     return BadRequest(new { success = false, message = "No video uploaded" });
                 }
 
-                _ = Task.Run( async() => await _videoUploadApplication.ConverterVideoFrames(video, videoUpload));
+                /// _ = Task.Run( async() => await _videoUploadApplication.ConverterVideoFrames(video, videoUpload));
+                await _videoUploadApplication.ConverterVideoFrames(video, videoUpload);
 
 
                 return new CreatedResult(videoUpload.UrlS3, new
