@@ -116,7 +116,6 @@ namespace fiap.API.Controllers
                     download_url = "/download/" + info.Name
                 };
             });
-
             return Task.FromResult<IActionResult>(Ok(new { total = files.Length, files = list }));
         }
     }
