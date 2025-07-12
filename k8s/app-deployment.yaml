@@ -1,56 +1,37 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: fiap-fase-3
+  name: fiap-fase-5
   labels: 
-     app: fiap-fase-3
+     app: fiap-fase-5
 spec:
   selector:
     matchLabels:
-      app: fiap-fase-3
+      app: fiap-fase-5
       version: v01
   template:
     metadata:
       labels:
-        app: fiap-fase-3
+        app: fiap-fase-5
         version: v01
     spec:
-      serviceAccountName: fiap-fase-3-account
+      serviceAccountName: frames-video-sa
       imagePullSecrets: 
         - name: docker-auth
       restartPolicy: Always
       containers:
-      - name: fiap-fase-3
+      - name: fiap-fase-5
         image: DOCKER_IMAGE
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "100Mi"
-            cpu: "100m"
+            memory: "600Mi"
+            cpu: "400m"
           limits:
-            memory: "200Mi"
-            cpu: "200m"
+            memory: "800Mi"
+            cpu: "600m"
         ports:
         - containerPort: 80
         env: 
         - name: "ASPNETCORE_ENVIROMENT"
           value: "Development"
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: fiap-fase-3-pod
-# spec:
-#   containers:
-#   - name: fiap-fase-3
-#     image: DOCKER_IMAGE
-#     resources:
-#       requests:
-#         memory: "50Mi"
-#       limits:
-#         memory: "100Mi"
-#     ports:
-#     - containerPort: 80
-#     env: 
-#     - name: "ASPNETCORE_ENVIROMENT"
-#       value: "Development"

@@ -1,6 +1,4 @@
-﻿using Amazon;
-using Amazon.SecretsManager;
-using fiap.Domain.Interfaces;
+﻿using fiap.Domain.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace fiap.Services
@@ -9,8 +7,8 @@ namespace fiap.Services
     {
         public static void AddServicesModule(this IServiceCollection services)
         {
-            services.AddSingleton<IAmazonSecretsManager>(new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName("us-east-1")));
-            services.AddSingleton<ISecretManagerService, SecretManagerService>();
+            services.AddTransient<IStatusUploadService, StatusUploadService>();
+            services.AddTransient<IS3Service, S3Service>();
         }
     }
 }

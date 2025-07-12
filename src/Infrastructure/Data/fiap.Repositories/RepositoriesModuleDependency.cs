@@ -7,7 +7,7 @@ namespace fiap.Repositories
     {
         public static void AddRepositoriesModule(this IServiceCollection services)
         {
-            services.AddSingleton<IClienteRepository, ClienteRepository>();
+           //// services.AddSingleton<IClienteRepository, ClienteRepository>();
         }
     }
 }

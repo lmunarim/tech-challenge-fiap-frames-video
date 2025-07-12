@@ -35,6 +35,13 @@
     <ProjectReference Include="..\..\Presentation\fiap.API\fiap.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="ControllerTests\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+
   <Target Name="SetCoverletOutputProperty" BeforeTargets="GenerateCoverletResult">
     <PropertyGroup>
       <CoverletOutput>coverage.opencover.xml</CoverletOutput>

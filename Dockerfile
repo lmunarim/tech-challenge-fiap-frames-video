@@ -1,21 +1,22 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
+
 USER app
 WORKDIR /app
 EXPOSE 8080
-#EXPOSE 443
-EXPOSE 1433
+EXPOSE 1433    
+RUN mkdir -p /app/uploads /app/outputs /app/temporary && \
+    chown -R app:app /app/uploads /app/outputs /app/temporary
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /
 COPY ["/src/Presentation/fiap.API/fiap.API.csproj", "src/Presentation/fiap.API/"]
-COPY ["/src/Presentation/fiap.API/fiap.API/lib", "src/Presentation/fiap.API/lib"]
-COPY ["/src/Presentation/fiap.API/fiap.API/outputs", "src/Presentation/fiap.API/outputs"]
-COPY ["/src/Presentation/fiap.API/fiap.API/temp", "src/Presentation/fiap.API/temp"]
 
 RUN dotnet restore "./src/Presentation/fiap.API/fiap.API.csproj"
 COPY . .
