@@ -484,10 +484,10 @@ Para questões relacionadas ao projeto:
 2. **Documentation**: Consultar esta documentação
 3. **Logs**: Verificar logs da aplicação para troubleshooting
 
-## 📄 Licença
 
-Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+## Recursos Adicionais
 
----
+- [Desenho Arquitetura](docs/Desenho%20Arquitetura.jpg)
+- [Demonstração em vídeo](https://youtu.be/Wy4g0rllg80)
 
 **Desenvolvido para o Tech Challenge FIAP - 9SOAT**
